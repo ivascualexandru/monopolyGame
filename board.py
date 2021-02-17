@@ -1,19 +1,58 @@
 class Tile:
   name = "N\A"
   price = 99999
-  ownedBy = 9
+  ownedBy = 0
   _counter = 0
 
   def __init__(self, name, price, ownedBy, noOfHouses, _counter):
     self.name = name
     self.price = price
-    self.tile = 0
+    self.tile = Tile._counter
     Tile._counter += 1
     self.tileNo = Tile._counter
     print("Tile created with name " + self.name + " and price " + str(self.price) + " at position " + str(_counter))
 
 pricesForTiles = {
-  #TODO
+  0: 999999,
+  1: 60,
+  2: 999999,
+  3: 60,
+  4: 999999,
+  5: 200,
+  6: 100,
+  7: 999999,
+  8: 100,
+  9: 120,
+  10: 999999,
+  11: 140,
+  12: 150,
+  13: 140,
+  14: 160,
+  15: 200,
+  16: 180,
+  17: 999999,
+  18: 180,
+  19: 200,
+  20: 999999,
+  21: 220,
+  22: 999999,
+  23: 220,
+  24: 240,
+  25: 200,
+  26: 260,
+  27: 260,
+  28: 150,
+  29: 280,
+  30: 999999,
+  31: 300,
+  32: 300,
+  33: 999999,
+  34: 320,
+  35: 200,
+  36: 999999,
+  37: 350,
+  38: 999999,
+  39: 400
 }
 
 namesForTiles = {

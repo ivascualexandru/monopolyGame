@@ -1,8 +1,13 @@
 from player import Player
-from board import Tile, namesForTiles, pricesForTile
+from board import *
 import random
+import os
 
-def outputPlayerInfo():
+
+os.system('cls')  # clear screen before running file
+
+
+def outputPlayerInfo(playerNum):
   #TODO fix bug related to this not being displayed at all
   for i in range(playerNum):
     print("Player " + str(i))
@@ -10,6 +15,8 @@ def outputPlayerInfo():
     print("Position: " + players[i].tile.name)
 
 def rollDice():
+    #TODO make it so that you actually roll twice, and if the results match,
+    #recursively call it again with depth+1 until we get to 3 or we stop rolling doubles
     randomNum = random.randint(1,6)
     print("Rolled a " + str(int(randomNum)) + "!")
     return randomNum
@@ -25,7 +32,7 @@ for i in range(playerNum):
 #INITIALIZING THE TILES
 tiles = []
 for i in range(39):
-  tiles.append(Tile(namesForTiles[i],500,0,0,i)) #TODO replace 500 with pricesForTiles[i]
+  tiles.append(Tile(namesForTiles[i],pricesForTiles[i],0,0,i)) #name, price, owned by, no of houses, id
 
 while True:
   #CHECKING IF GAME IS OVER
@@ -33,6 +40,7 @@ while True:
   for j in range(playerNum):
     if (players[j].money == 0):
       remainingPlayers-=1
+  print(str(remainingPlayers) + " players left.")
   if (remainingPlayers == 1):
     for j in range(playerNum):
       if (players[j].money != 0):
