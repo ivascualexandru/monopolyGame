@@ -8,7 +8,7 @@ class Player:
   def moveSpaces(self, spacesToMove):
     self.tile = self.tile + spacesToMove
     if (self.tile > 39):
-      self.tile = self.tile - 39
+      self.tile = self.tile - 40
     print("Player " + self.name +" is now at " + str(self.tile))
 
     '''
