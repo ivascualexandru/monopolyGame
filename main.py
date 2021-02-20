@@ -8,7 +8,6 @@ os.system('cls')  # clear screen before running file
 
 
 def outputPlayerInfo(playerNum):
-  #TODO fix bug related to this not being displayed at all
   for i in range(playerNum):
     print("Player " + str(i))
     print("Name: " + players[i].name + "     Money: " + str(players[i].money))
