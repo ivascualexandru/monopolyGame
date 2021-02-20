@@ -7,12 +7,6 @@ import os
 os.system('cls')  # clear screen before running file
 
 
-def outputPlayerInfo(playerNum):
-  for i in range(playerNum):
-    print("Player " + str(i))
-    print("Name: " + players[i].name + "     Money: " + str(players[i].money))
-    print("Position: " + tiles[players[i].position].name)
-
 def rollDice():
     #TODO make it so that you actually roll twice, and if the results match,
     #recursively call it again with depth+1 until we get to 3 or we stop rolling doubles
@@ -46,7 +40,7 @@ while True:
         print(players[j].name + "WON! A round of applause.")
         break
 
-  outputPlayerInfo(playerNum)
+  players[i].outputPlayerInfo()
   #IF GAME IS NOT OVER, ROLL THE DICE
   for i in range(playerNum):
     print("Player " + str(i+1) + "'s turn")

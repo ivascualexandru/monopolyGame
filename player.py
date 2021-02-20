@@ -14,10 +14,15 @@ class Player:
       self.position = self.position - 40
       print("Player " + self.name +" is now at " + str(self.position))
 
+  def outputPlayerInfo(self):
+    print("Player " + self.name)
+    print("Name: " + self.name + "     Money: " + str(self.money))
+    print("Position: " + self.position)
+
   def buyTile(self, tileCurrentlyOn, playerNumber):
     if (self.money >= tileCurrentlyOn[self.position].price):
       self.money -= tileCurrentlyOn[self.position].price
-      tileCurrentlyOn[self.position].ownedBy = self.playerNumber
+      tileCurrentlyOn[self.position].ownedBy = playerNumber
       print("Tile number " + str(self.position) + " is now owned by player " + str(playerNumber) + ".")
     else:
       print("Whoops! You don't have any money.")

@@ -12,6 +12,9 @@ class Tile:
     self.tileNo = Tile._counter
     print("Tile created with name " + self.name + " and price " + str(self.price) + " at position " + str(_counter))
 
+  def getPrice(self):
+    return pricesForTiles[self._counter]
+
 pricesForTiles = {
   0: 999999,
   1: 60,
