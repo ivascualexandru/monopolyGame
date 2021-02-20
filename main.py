@@ -12,7 +12,7 @@ def outputPlayerInfo(playerNum):
   for i in range(playerNum):
     print("Player " + str(i))
     print("Name: " + players[i].name + "     Money: " + str(players[i].money))
-    print("Position: " + players[i].tile.name)
+    print("Position: " + tiles[players[i].position].name)
 
 def rollDice():
     #TODO make it so that you actually roll twice, and if the results match,
@@ -47,24 +47,21 @@ while True:
         print(players[j].name + "WON! A round of applause.")
         break
 
-  outputPlayerInfo
+  outputPlayerInfo(playerNum)
   #IF GAME IS NOT OVER, ROLL THE DICE
   for i in range(playerNum):
     print("Player " + str(i+1) + "'s turn")
     playerDecision = input("Roll / Build / End:")
     if (playerDecision == "Roll"):
       players[i].moveSpaces(rollDice())
-      print(tiles[players[i].tile].name)
-      if (tiles[players[i].tile].ownedBy == 0): #IF TILE ISN'T ALREADY OWNED BY ANYONE IN THE GAME
-        print("It appears the tile you landed on (" + tiles[players[i].tile].name + ") isn't owned by anyone, and costs " + str(tiles[players[i].tile].price))
-        buy = input("Do you want to buy it? [Y/N]")
+      print("Player " + str(i) +" arrived at " + tiles[players[i].position].name)
+      if (tiles[players[i].position].ownedBy == 0): #IF TILE ISN'T ALREADY OWNED BY ANYONE IN THE GAME
+        print("It appears the tile you landed on isn't owned by anyone, and costs " + str(tiles[players[i].position].price))
+        buy = input("Do you want to buy it? [Y/N] (Your money: " + str(players[i].money) + ").")
         if (buy == "Y"):
-          players[i].money -= tiles[players[i].tile].price
-          tiles[players[i].tile].ownedBy = i
-          print("Tile " + tiles[players[i].tile].name + "has been bought by player " + str(i))
-    '''
-    TODO: 
-    IF BOARD[players[i].tile] NOT OWNED
-    PROMPT PLAYER TO MAKE A CHOICE
-    BUY OR NOT (MAYBE AUCTION)
-    '''
+          players[i].buyTile(tiles[i], i)
+    elif (playerDecision == "End"):
+      continue
+    else:
+      raise ValueError('Answer not Roll or End')
+      #TODO maybe get the code to try another command if the player is being dumb
