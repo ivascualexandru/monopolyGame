@@ -7,7 +7,6 @@ class Tile:
   def __init__(self, name, price, ownedBy, noOfHouses, _counter):
     self.name = name
     self.price = price
-    #self.tile = Tile._counter
     Tile._counter += 1
     self.position = Tile._counter
     print("Tile created with name " + self.name + " and price " + str(self.price) + " at position " + str(_counter))

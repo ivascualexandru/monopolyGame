@@ -10,6 +10,9 @@ os.system('cls')  # clear screen before running file
 def rollDice():
     #TODO make it so that you actually roll twice, and if the results match,
     #recursively call it again with depth+1 until we get to 3 or we stop rolling doubles
+
+    #TODO maybe if they roll doubles thrice in a row have them land in jail,
+    #money -= 100 or roll doubles again to get out (automatically get out after 3 turns)
     randomNum = random.randint(1,6)
     print("Rolled a " + str(int(randomNum)) + "!")
     return randomNum
@@ -25,7 +28,8 @@ for i in range(playerNum):
 #INITIALIZING THE TILES
 tiles = []
 for i in range(39):
-  tiles.append(Tile(namesForTiles[i],pricesForTiles[i],0,0,i)) #name, price, owned by, no of houses, id
+  tiles.append(Tile(namesForTiles[i],pricesForTiles[i],0,0,i)) #name, price, owned by, no of houses, id 
+  #(maybe advanced setup rules?)
 
 while True:
   #CHECKING IF GAME IS OVER
@@ -64,3 +68,4 @@ while True:
     else:
       raise ValueError('Answer not Roll or End')
       #TODO maybe get the code to try another command if the player is being dumb
+      #TODO have the player roll at LEAST once per turn, make a alreadyRolled variable
