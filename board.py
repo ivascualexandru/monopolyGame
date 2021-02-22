@@ -9,7 +9,7 @@ class Tile:
     self.price = price
     #self.tile = Tile._counter
     Tile._counter += 1
-    self.tileNo = Tile._counter
+    self.position = Tile._counter
     print("Tile created with name " + self.name + " and price " + str(self.price) + " at position " + str(_counter))
 
   def getPrice(self):

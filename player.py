@@ -4,7 +4,7 @@ class Player:
 
   _counter = 0
 
-  def __init__(self, money, name, _counter):
+  def __init__(self, money, name):
     self.money = money
     self.name = name
     self.position = 0
@@ -25,11 +25,11 @@ class Player:
     print("Position: " + str(self.position))
 
   def buyTile(self, tileCurrentlyOn):
-    #print("Passed args: Money is " + str(self.money) + ", price is " + str(tileCurrentlyOn.price) + ", name is " + tileCurrentlyOn.name, "position is " + str(tileCurrentlyOn._counter))
-    if (self.money >= tileCurrentlyOn.price):
+    print("Passed args: Money is " + str(self.money) + ", price is " + str(tileCurrentlyOn.price) + ", name is " + tileCurrentlyOn.name, "position is " + str(tileCurrentlyOn.position))
+    if (self.money >= tileCurrentlyOn.price and tileCurrentlyOn.ownedBy is 0):
       self.money -= tileCurrentlyOn.price
       tileCurrentlyOn.ownedBy = self._counter
-      print("Tile number " + str(tileCurrentlyOn._counter) + " is now owned by player " + str(self.name) + ".")
+      print("Tile number " + str(tileCurrentlyOn.position) + " is now owned by player " + str(self.name) + ".")
     else:
       print("Whoops! You don't have any money.")
 
