@@ -1,10 +1,15 @@
 import board
 
 class Player:
-  def __init__(self, money, name):
+
+  _counter = 0
+
+  def __init__(self, money, name, _counter):
     self.money = money
     self.name = name
     self.position = 0
+    Player._counter += 1
+    self.playerNo = Player._counter
     print("Player created with name " + self.name + " and money " + str(self.money) + " at tile " + str(self.position))
   
   def moveSpaces(self, spacesToMove):
@@ -17,13 +22,14 @@ class Player:
   def outputPlayerInfo(self):
     print("Player " + self.name)
     print("Name: " + self.name + "     Money: " + str(self.money))
-    print("Position: " + self.position)
+    print("Position: " + str(self.position))
 
-  def buyTile(self, tileCurrentlyOn, playerNumber):
-    if (self.money >= tileCurrentlyOn[self.position].price):
-      self.money -= tileCurrentlyOn[self.position].price
-      tileCurrentlyOn[self.position].ownedBy = playerNumber
-      print("Tile number " + str(self.position) + " is now owned by player " + str(playerNumber) + ".")
+  def buyTile(self, tileCurrentlyOn):
+    #print("Passed args: Money is " + str(self.money) + ", price is " + str(tileCurrentlyOn.price) + ", name is " + tileCurrentlyOn.name, "position is " + str(tileCurrentlyOn._counter))
+    if (self.money >= tileCurrentlyOn.price):
+      self.money -= tileCurrentlyOn.price
+      tileCurrentlyOn.ownedBy = self._counter
+      print("Tile number " + str(tileCurrentlyOn._counter) + " is now owned by player " + str(self.name) + ".")
     else:
       print("Whoops! You don't have any money.")
 

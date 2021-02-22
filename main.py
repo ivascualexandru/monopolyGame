@@ -20,7 +20,7 @@ playerNum = int(strPlayerNum)
 players = []
 for i in range(playerNum):
   playerName = input("Player " + str(i+1) + "'s name is the following: ")
-  players.append(Player(2000, playerName))
+  players.append(Player(2000, playerName, i))
 
 #INITIALIZING THE TILES
 tiles = []
@@ -40,9 +40,9 @@ while True:
         print(players[j].name + "WON! A round of applause.")
         break
 
-  players[i].outputPlayerInfo()
   #IF GAME IS NOT OVER, ROLL THE DICE
   for i in range(playerNum):
+    players[i].outputPlayerInfo()
     print("Player " + str(i+1) + "'s turn")
     playerDecision = input("Roll / Build / End:")
     if (playerDecision == "Roll"):
@@ -52,7 +52,7 @@ while True:
         print("It appears the tile you landed on isn't owned by anyone, and costs " + str(tiles[players[i].position].price))
         buy = input("Do you want to buy it? [Y/N] (Your money: " + str(players[i].money) + ").")
         if (buy == "Y"):
-          players[i].buyTile(tiles[i], i)
+          players[i].buyTile(tiles[i])
     elif (playerDecision == "End"):
       continue
     else:
