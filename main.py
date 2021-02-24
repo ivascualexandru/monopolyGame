@@ -1,21 +1,10 @@
-from player import Player
+from player import *
 from board import *
-import random
+from moreFunctions import *
 import os
 
 
 os.system('cls')  # clear screen before running file
-
-
-def rollDice():
-    #TODO make it so that you actually roll twice, and if the results match,
-    #recursively call it again with depth+1 until we get to 3 or we stop rolling doubles
-
-    #TODO maybe if they roll doubles thrice in a row have them land in jail,
-    #money -= 100 or roll doubles again to get out (automatically get out after 3 turns)
-    randomNum = random.randint(1,6)
-    print("Rolled a " + str(int(randomNum)) + "!")
-    return randomNum
 
 #INITIALIZING NUMBER OF PLAYERS
 strPlayerNum = input("Hello and welcome to another game of Monopoly! How many players will it be?")
@@ -47,25 +36,8 @@ while True:
   #IF GAME IS NOT OVER, ROLL THE DICE
   for i in range(playerNum):
     players[i].outputPlayerInfo()
-    print("Player " + str(i+1) + "'s turn")
-    playerDecision = input("Roll / Build / End:")
-    if (playerDecision == "Roll"):
-      players[i].moveSpaces(rollDice())
-      print("Player " + str(i) +" arrived at " + tiles[players[i].position].name)
-      if (tiles[players[i].position].ownedBy == 0): #IF TILE ISN'T ALREADY OWNED BY ANYONE IN THE GAME
-        print("It appears the tile you landed on isn't owned by anyone, and costs " + str(tiles[players[i].position].price))
-        print("Player $$: " + str(players[i].money))
-        print("Tile $$: " + str(tiles[players[i].position].price))
-        buy = input("Do you want to buy it? [Y/N] (Your money: " + str(players[i].money) + ").")
-        if (buy == "Y"):
-          players[i].buyTile(tiles[players[i].position])
-        elif (buy == "N"):
-          continue
-        else:
-          raise ValueError('Answer not Y or N')
-    elif (playerDecision == "End"):
-      continue
-    else:
-      raise ValueError('Answer not Roll or End')
-      #TODO maybe get the code to try another command if the player is being dumb
-      #TODO have the player roll at LEAST once per turn, make a alreadyRolled variable
+    players[i].canRoll = 1
+    players[i].timesMovedThisTurn=0
+    playerChoice(i, players, tiles)
+    #TODO maybe get the code to try another command if the player is being dumb
+    #TODO have the player roll at LEAST once per turn, make a alreadyRolled variable
