@@ -39,9 +39,15 @@ class Player:
     else:
       self.position = self.position + die1 + die2
       self.timesMovedThisTurn+=1
-      if (die1 is die2):
-        playerChoice(self.playerNo, players, tiles)
+      #if (die1 is die2):
+        #prompt player to Roll again
+        #playerChoice(self.playerNo, players, tiles)
+        #TODO
       print("Player " + self.name +" is now at " + str(self.position))
+      #if tile is already owned
+        #look up price based on number of houses on that tile (make separate dictionary/list/whatever)
+        #and pay the owner the price
+        #and output the players' money
       if (self.position > 39):
         self.position = self.position - 40
         self.money+=200
