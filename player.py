@@ -15,7 +15,7 @@ class Player:
     self.playerNo = Player._counter
     print("Player created with name " + self.name + " and money " + str(self.money) + " at tile " + str(self.position))
   
-  def rollDice(self):
+  def rollDice(self, players, tiles):
     #TODO maybe if they roll doubles thrice in a row have them land in jail,
     #money -= 200 or roll doubles again to get out (automatically get out after 3 turns)
 
@@ -30,7 +30,7 @@ class Player:
     return randomNum1*10+randomNum2
 
 
-  def moveSpaces(self, dice):
+  def moveSpaces(self, dice, players, tiles):
     die1 = int(dice/10)
     die2 = dice%10
     if(self.timesMovedThisTurn is 3):
@@ -39,9 +39,9 @@ class Player:
     else:
       self.position = self.position + die1 + die2
       self.timesMovedThisTurn+=1
-      #if (die1 is die2):
+      if (die1 is die2):
         #prompt player to Roll again
-        #playerChoice(self.playerNo, players, tiles)
+        playerChoice(self.playerNo, players, tiles)
         #TODO
       print("Player " + self.name +" is now at " + str(self.position))
       #if tile is already owned

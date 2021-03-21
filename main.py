@@ -40,4 +40,3 @@ while True:
     players[i].timesMovedThisTurn=0
     playerChoice(i, players, tiles)
     #TODO maybe get the code to try another command if the player is being dumb
-    #TODO have the player roll at LEAST once per turn, make a alreadyRolled variable
