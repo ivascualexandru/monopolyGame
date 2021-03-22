@@ -7,20 +7,27 @@ def playerChoice(i, players, tiles):
         playerDecision = input("Build / End: ")
 
     if (playerDecision == "Roll"):
-        players[i].moveSpaces(players[i].rollDice(players, tiles), players, tiles)
-        print("Player " + str(i) +" arrived at " + tiles[players[i].position].name)
-        if (tiles[players[i].position].ownedBy == 0): #IF TILE ISN'T ALREADY OWNED BY ANYONE IN THE GAME
-            print("It appears the tile you landed on isn't owned by anyone, and costs " + str(tiles[players[i].position].price))
-            buy = input("Do you want to buy it? [Y/N] (Your money: " + str(players[i].money) + ").")
-            if (buy == "Y"):
-                players[i].buyTile(tiles[players[i].position])
-            elif (buy == "N"):
-                pass
-            else:
-                raise ValueError('Answer not Y or N')
+        if (players[i].canRoll == 1):
+            players[i].moveSpaces(players[i].rollDice(players, tiles), players, tiles)
+            print("Player " + str(i) +" arrived at " + tiles[players[i].position].name)
+            if (tiles[players[i].position].ownedBy == 0): #IF TILE ISN'T ALREADY OWNED BY ANYONE IN THE GAME
+                print("It appears the tile you landed on isn't owned by anyone, and costs " + str(tiles[players[i].position].price))
+                buy = input("Do you want to buy it? [Y/N] (Your money: " + str(players[i].money) + ").")
+                if (buy == "Y"):
+                    players[i].buyTile(tiles[players[i].position])
+                elif (buy == "N"):
+                    pass
+                else:
+                    raise ValueError('Answer not Y or N')
+        elif (players[i].canRoll == 0):
+            print("Sorry! You can't roll. Please pick either Build (TODO) or End.")
+
 
     elif (playerDecision == "End"):
-        pass
+        players[i].canRoll = 1
+        players[i].timesMovedThisTurn = 0
+        return 0
+
     else:
-      raise ValueError('Answer not Roll or End')
+      raise ValueError('Answer not Roll, Build (TODO) or End')
     playerChoice(i, players, tiles)
