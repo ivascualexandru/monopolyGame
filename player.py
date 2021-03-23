@@ -15,7 +15,7 @@ class Player:
     self.playerNo = Player._counter
     print("Player created with name " + self.name + " and money " + str(self.money) + " at tile " + str(self.position))
   
-  def rollDice(self, players, tiles):
+  def rollDice(self):
     #TODO maybe if they roll doubles thrice in a row have them land in jail,
     #money -= 200 or roll doubles again to get out (automatically get out after 3 turns)
 
