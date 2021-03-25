@@ -39,4 +39,3 @@ while True:
     players[i].canRoll = 1
     players[i].timesMovedThisTurn=0
     playerChoice(i, players, tiles)
-    #TODO maybe get the code to try another command if the player is being dumb
