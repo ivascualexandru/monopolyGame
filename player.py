@@ -11,10 +11,13 @@ class Player:
     self.money = money
     self.name = name
     self.position = 0
-    Player._counter += 1
     self.playerNo = Player._counter
+    Player._counter += 1
     print("Player created with name " + self.name + " and money " + str(self.money) + " at tile " + str(self.position))
   
+  def __del__(self):
+    self._counter-=1
+
   def rollDice(self):
     #TODO maybe if they roll doubles thrice in a row have them land in jail,
     #money -= 200 or roll doubles again to get out (automatically get out after 3 turns)
@@ -38,6 +41,16 @@ class Player:
       #TODO goToJail
     else:
       self.position = self.position + die1 + die2
+      print("Player " + str(self.playerNo) +" arrived at " + tiles[players[self.playerNo].position].name)
+      if (tiles[players[self.playerNo].position].ownedBy == 0): #IF TILE ISN'T ALREADY OWNED BY ANYONE IN THE GAME
+        print("It appears the tile you landed on isn't owned by anyone, and costs " + str(tiles[players[self.playerNo].position].price))
+      buy = input("Do you want to buy it? [Y/N] (Your money: " + str(players[self.playerNo].money) + ").")
+      if (buy == "Y"):
+          players[self.playerNo].buyTile(tiles[players[self.playerNo].position])
+      elif (buy == "N"):
+          pass
+      else:
+          raise ValueError('Answer not Y or N')
       self.timesMovedThisTurn+=1
       if (die1 is die2):
         #prompt player to Roll again
@@ -61,7 +74,7 @@ class Player:
   def buyTile(self, tileCurrentlyOn):
     if (self.money >= tileCurrentlyOn.price and tileCurrentlyOn.ownedBy is 0):
       self.money -= tileCurrentlyOn.price
-      tileCurrentlyOn.ownedBy = self._counter
+      tileCurrentlyOn.ownedBy = self.playerNo
       print("Tile number " + str(tileCurrentlyOn.position) + " is now owned by player " + str(self.name) + ".")
     else:
       print("Whoops! You don't have any money.")

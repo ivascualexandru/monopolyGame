@@ -1,5 +1,5 @@
 def playerChoice(i, players, tiles):
-    print("Player " + str(i+1) + "'s turn\nPlease select your choice:")
+    print("Player " + str(i) + "'s turn\nPlease select your choice:")
     playerOptions = []
     if (players[i].canRoll == 1):
         playerOptions.append("Roll")    
@@ -7,8 +7,8 @@ def playerChoice(i, players, tiles):
     else:
         playerOptions.append("Build")
         playerOptions.append("End")
-    for i in range(len(playerOptions)):
-        print(playerOptions[i], end=' / ')
+    for j in range(len(playerOptions)):
+        print(playerOptions[j], end=' / ')
     playerDecision = input("\n")
     if (playerDecision in playerOptions):
         if (playerDecision == "Roll"):

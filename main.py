@@ -11,7 +11,7 @@ strPlayerNum = input("Hello and welcome to another game of Monopoly! How many pl
 playerNum = int(strPlayerNum)
 players = []
 for i in range(playerNum):
-  playerName = input("Player " + str(i+1) + "'s name is the following: ")
+  playerName = input("Player " + str(i) + "'s name is the following: ")
   players.append(Player(2000, playerName))
 
 #INITIALIZING THE TILES
@@ -34,7 +34,9 @@ while True:
         break
 
   #IF GAME IS NOT OVER, ROLL THE DICE
-  for i in range(playerNum):
+  for i in range(Player._counter):
+    if (players[i].money == 0):
+      continue
     players[i].outputPlayerInfo()
     players[i].canRoll = 1
     players[i].timesMovedThisTurn=0
